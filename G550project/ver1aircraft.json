@@ -1,0 +1,128 @@
+{
+    "com": [0, -1.0, 0],
+    "gearTravelTime": 8,
+    "flapsTravelTime": 4,
+    "flapsSteps": 3,
+    "airbrakesTravelTime": 0.6,
+    "reverse": true,
+
+    "cockpitShadowMapMaxDistance": 40,
+    "cockpitScaleFix": 1.5,
+
+    "zeroRPMAltitude": 51000,
+    "minRPM": 1200,
+    "maxRPM": 11000,
+    "driveRatio": 0.3,
+    "engineInertia": 0.8,
+
+    "optionalAnimatedPartTravelTime": 2,
+    "startupTime": 12,
+    "shutdownTime": 20,
+    "brakeDamping": 4.0,
+
+    "startAltitude": 2.5,
+    "startTilt": 0,
+    "minimumSpeed": 140,
+
+    "autopilot": {
+        "pitchAnglePID": [0.03, 0.003, 0.1],
+        "elevatorPitchPID": [0.02, 0.001, 0.0000001],
+        "bankAnglePID": [0.15, 0.002, 0.02],
+        "aileronsRollPID": [0.1, 0.001, 0.0000001],
+        "throttlePID": [0.2, 0, 0]
+    },
+
+    "parts": [
+        {
+            "name": "root",
+            "type": "root",
+            "model": "G550ver1.glb",
+            "position": [0, 0, 0]
+        },
+        /* 空力設定：ビジネスジェットの挙動 */
+        {
+            "name": "body",
+            "type": "airfoil",
+            "area": 18,
+            "buoyancy": 24000,
+            "forceDirection": "X"
+        },
+        {
+            "name": "leftwing",
+            "type": "airfoil",
+            "area": 45,
+            "forceDirection": "Z",
+            "points": {
+                "forceSourcePoint": [6, -1, 0.5]
+            },
+            "stallIncidence": 18,
+            "zeroLiftIncidence": 8,
+            "stalls": true
+        },
+        {
+            "name": "rightwing",
+            "type": "airfoil",
+            "area": 45,
+            "forceDirection": "Z",
+            "points": {
+                "forceSourcePoint": [-6, -1, 0.5]
+            },
+            "stallIncidence": 18,
+            "zeroLiftIncidence": 8,
+            "stalls": true
+        },
+        /* エンジン：リアマウント位置 */
+        {
+            "name": "engine1",
+            "type": "engine",
+            "thrust": 68440,
+            "forceDirection": "Y",
+            "contrail": true,
+            "points": {
+                "forceSourcePoint": [-2.5, -12, 1.5],
+                "contrailAnchor": [-2.5, -15, 1.5]
+            }
+        },
+        {
+            "name": "engine2",
+            "type": "engine",
+            "thrust": 68440,
+            "forceDirection": "Y",
+            "contrail": true,
+            "points": {
+                "forceSourcePoint": [2.5, -12, 1.5],
+                "contrailAnchor": [2.5, -15, 1.5]
+            }
+        },
+        /* 尾翼：T字型に合わせて高さを調整 */
+        {
+            "name": "horizontalstab",
+            "type": "airfoil",
+            "area": 15,
+            "forceDirection": "Z",
+            "points": {
+                "forceSourcePoint": [0, -18, 5.5]
+            }
+        },
+        {
+            "name": "verticalstab",
+            "type": "airfoil",
+            "area": 12,
+            "forceDirection": "X",
+            "points": {
+                "forceSourcePoint": [0, -17, 3.5]
+            }
+        }
+    ],
+
+    "cameras": {
+        "follow": {
+            "distance": 45
+        },
+        "cockpit": {
+            "position": [0, 10.5, 0.8],
+            "orientation": [0, -5, 0],
+            "FOV": 60
+        }
+    }
+}
